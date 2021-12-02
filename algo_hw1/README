@@ -1,0 +1,13 @@
+--How to Compilie
+In this directory, enter the following command:
+$ make
+It will generate the excutable file "109062633_hw1" in this directory.
+
+If you want to remove it, please enter the following command:
+$ make clean
+
+--How to Run
+  In this directory, enter the following command:
+  Usage: ./<exe> <input size N> <K for kth smallest element> <group size G>
+  e.g.:
+  $ ./109062633_hw1 10000001 10000 5
