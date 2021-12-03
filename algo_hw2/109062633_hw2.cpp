@@ -3,15 +3,36 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
-int TSP()
-{
+struct node{
+    vector<int> visited;
+    int bound;
+};
 
+int bound(int edges, vector<int> visited){
+    
+    int size = visited.size();
+    int fixed_cost = 0;
+    if (size> 1){
+        int j;
+        for(int i=0; i < size - 2 + 1; i++){
+            j = i + 1;
+            fixed_cost += edges[i][j];
+        }
+    }
+
+    return fixed_cost;
 }
 
-int main () 
-{
+int TSP(int *edges){
+
+    return 0;
+}
+
+int main(){
     vector<string> numbers;
 
     ifstream ifs("tsp_input.txt", std::ios::in);
@@ -34,5 +55,8 @@ int main ()
             idx += 1;
         }
     }
+
+    int answer = TSP(*edges);
+
     return 0;
 }
