@@ -60,22 +60,25 @@ int find_min(int key, vector<int> W) {
     return min_weight;
 }
 
-int bound(int n, const vector<vector<int>> &edges, vector<int> visited){
+int bound(int n, const vector<vector<int>> &edges, vector<vector<int>> &visited){
     
     int size = visited.size();
     int fixed_cost = 0;
     int lower_bound = 0;
 
     if (size > 1){
-        for(int i=1; i <= size - 1; i++)
+        for(int i=1; i <= size - 1; i++){
             fixed_cost += edges[i][i + 1];
+        }      
     }
 
     //TODO find min weight in each row to calculate lower bound
     for (int i = 1; i <= n; i++) {
         int row_min = (int)numeric_limits<double>::infinity();
         for (int j=0; j <= n; j++) {
-            
+            if (!visited[i][j]){
+                row_min = min(row_min, edges[i][j]);
+            }
         }
     }
 
