@@ -100,6 +100,13 @@ int TSP(int n, const vector<vector<int>>& W, vector<int>& opttour, int& length){
 
     // When we go through (1, 2), we should mark all element in row 1 
     // and column 2 of already_visited into true
+    while (!node_pq.empty()){
+        u = node_pq.top();
+        node_pq.pop();
+        if (u.bound < minlength) {
+            u.level = v.level + 1;
+        }
+    }
 
     return 0;
 }
