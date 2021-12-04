@@ -94,7 +94,8 @@ int TSP(int n, const vector<vector<int>>& W, vector<int>& opttour, int& length){
     Node u, v;
     v.level = 1;
     v.path = {1};
-
+    // error, don't know how to pass these two vectors QQ
+    v.bound = bound(n, W, already_visited);
     double minlength = numeric_limits<double>::infinity();
     node_pq.push(v);
 
