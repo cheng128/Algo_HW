@@ -43,17 +43,17 @@ vector<vector<int>> parse(string file){
 
 void print(vector<vector<int>>& mat){
     int dim = mat.size();
-    for(int i = 0; i < dim; i++){
-        for(int j = 0; j < dim; j++){
+    for(int i = 0; i < dim; i++) {
+        for(int j = 0; j < dim; j++) {
             cout << mat[i][j] << " ";
         }
         cout << "\n";
     }
 }
 
-int find_min(int key, vector<int> W){
+int find_min(int key, vector<int> W) {
     int min_weight = *max_element(W.begin(), W.end());
-    for(int i=1; i<W.size();i++){
+    for(int i=1; i<W.size();i++) {
         if(i != key)
             min_weight = min(min_weight, W[i]);
     }
@@ -67,19 +67,26 @@ int bound(int n, const vector<vector<int>> &edges, vector<int> visited){
     int lower_bound = 0;
 
     if (size > 1){
-        int j;
-        for(int i=0; i < size - 2 + 1; i++){
-            j = i + 1;
-            fixed_cost += edges[i][j];
+        for(int i=1; i <= size - 1; i++)
+            fixed_cost += edges[i][i + 1];
+    }
+
+    //TODO find min weight in each row to calculate lower bound
+    for (int i = 1; i <= n; i++) {
+        int row_min = (int)numeric_limits<double>::infinity();
+        for (int j=0; j <= n; j++) {
+            
         }
     }
-    //TODO find min weight in each row to calculate lower bound
 
     return fixed_cost + lower_bound;
 }
 
 int TSP(int n, const vector<vector<int>>& W, vector<int>& opttour, int& length){
+    vector<vector<bool>> already_visited(n+1, vector<bool>(n+1, false));
+
     priority_queue<Node, vector<Node>, cmp> node_pq;
+
     Node u, v;
     v.level = 1;
     v.path = {1};
@@ -87,6 +94,8 @@ int TSP(int n, const vector<vector<int>>& W, vector<int>& opttour, int& length){
     double minlength = numeric_limits<double>::infinity();
     node_pq.push(v);
 
+    // When we go through (1, 2), we should mark all element in row 1 
+    // and column 2 of already_visited into true
 
     return 0;
 }
@@ -94,7 +103,6 @@ int TSP(int n, const vector<vector<int>>& W, vector<int>& opttour, int& length){
 int main () 
 {
     vector<vector<int>> edges = parse("tsp_input.txt");
-    cout << find_min(1, edges[1]) << endl;
     // int answer = TSP(*edges);
 
     return 0;
