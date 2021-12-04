@@ -80,6 +80,7 @@ int bound(int n, const vector<vector<int>> &edges, vector<vector<int>> &visited)
                 row_min = min(row_min, edges[i][j]);
             }
         }
+        lower_bound += row_min;
     }
 
     return fixed_cost + lower_bound;
